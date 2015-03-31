@@ -70,7 +70,7 @@ Vagrant.configure("2") do |global_config|
     global_config.vm.define vm_name do |config|
       hostname = vm_name
       if hostname == 'default' then
-        hostname = 'saio'
+        hostname = 'swift'
       end
       config.vm.hostname = hostname
       config.vm.box = vagrant_box
@@ -79,8 +79,8 @@ Vagrant.configure("2") do |global_config|
       end
       config.vm.network :private_network, ip: ip
       config.vm.provider :virtualbox do |vb|
-        vb.name = "vagrant-#{hostname}-#{current_datetime}"
-        vb.memory = 768
+        vb.name = "#{hostname}-#{current_datetime}"
+        vb.memory = 2048
       end
       config.vm.provision :chef_solo do |chef|
         chef.add_recipe "swift"
